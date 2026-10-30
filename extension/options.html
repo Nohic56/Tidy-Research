@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Settings · Tidy Research</title><link rel="stylesheet" href="ui.css"></head><body><main class="options">
+  <header><img src="icons/icon.svg" alt=""><div><h1>Tidy Research</h1><p>Your links and research shortcuts, with clear controls.</p></div></header>
+  <section class="card"><h2>Browsing preferences</h2>
+    <form id="preferences">
+      <label class="toggle"><input type="checkbox" id="autoClean">Automatically remove recognised tracking fields on new page loads</label>
+      <p class="hint">Runs before ordinary GET page requests. Does not modify form submissions, images, scripts, or background requests. Existing tabs can be cleaned from the toolbar without reloading.</p>
+      <label class="toggle"><input type="checkbox" id="searchLinks">Show UniProt, PubMed and Maps shortcuts on DuckDuckGo and Google</label>
+      <p class="hint">Queries stay in your browser until you choose a shortcut. Your default search engine stays as you set it.</p>
+      <h3><label for="excludedHosts">Pause on these websites</label></h3>
+      <p class="hint">One hostname per line, such as <code>example.org</code>. Also pauses its subdomains. Paused websites are left unchanged by both automatic and manual cleanup.</p>
+      <textarea id="excludedHosts" spellcheck="false" placeholder="example.org"></textarea>
+      <button class="primary" type="submit">Save preferences</button>
+    </form><p id="message" role="status" aria-live="polite"></p>
+  </section>
+  <section class="card"><h2>Try a link</h2>
+    <label for="testUrl" class="muted">Preview locally — does not open the address</label>
+    <input type="url" id="testUrl" placeholder="https://example.org/?q=protein&amp;utm_source=chatgpt.com">
+    <div class="url" id="testResult" aria-live="polite">Paste a link to see the result.</div>
+    <p class="hint">Recognised <code>utm_*</code> fields and common advertising click IDs are removed. Other fields, empty values, fragments, ordering and query encoding are preserved. Links with recognised signing, login, or token parameters are left unchanged. Unrecognised signing schemes may require a site exception.</p>
+  </section>
+  <section class="card"><h2>Research shortcuts</h2>
+    <p>In Firefox’s address bar, type <kbd>u</kbd> <kbd>Space</kbd> then your query. Enter opens UniProt. The dropdown also offers PubMed and Maps.</p>
+    <ul><li><code>u P04637</code> opens a UniProt accession directly.</li><li><code>u CDC27_HUMAN</code> searches an entry name.</li><li><code>u cyclin B Xenopus</code> searches UniProt.</li><li><code>u pubmed APC/C phosphorylation</code> searches PubMed.</li></ul>
+    <p>Accession recognition checks the published format; it does not verify that an entry exists. A gene name alone can refer to several proteins or species.</p>
+    <p>Select text on a page and right-click for research searches. Right-click a link to copy its clean address.</p>
+  </section>
+  <section class="card"><h2>Privacy &amp; permissions</h2>
+    <p>No analytics, advertising, accounts, remote code, or background research queries. URL cleanup and identifier recognition run locally.</p>
+    <p>When you explicitly open a research shortcut, the query is sent to the website you chose: UniProt, PubMed, or Google Maps. That destination receives a normal browser request and applies its own privacy policy. Firefox discloses this as access to search terms during installation.</p>
+    <p>Website access is needed to clean new navigations across websites and display search shortcuts. Page editing is used only when you choose “Clean address”. Clipboard permission is used only when you choose a copy action. No cookie, password, download, or browsing-history API is used.</p>
+    <p>Preferences and excluded hostnames are stored locally. The most recent cleaned address per tab is stored in browser-session memory for the undo action; it is not synced or sent to the developer. Undo is offered for 10 minutes on that same page. Records are replaced by later cleanup, removed when tabs close, and cleared when Firefox exits.</p>
+    <p>Firefox’s protected pages cannot be edited. Private windows require a separate allowance in Firefox. Cleanup cannot erase tracking information that was already sent before the extension acted.</p>
+    <p class="hint">Tidy Research is an independent project, not affiliated with Mozilla, DuckDuckGo, Google, UniProt, or NCBI.</p>
+  </section>
+  <footer><span>Tidy Research · 1.0.0 · Desktop Firefox 142+</span></footer>
+  <script src="core.js"></script><script src="options.js"></script>
+</main></body></html>

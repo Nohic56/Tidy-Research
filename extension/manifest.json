@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Tidy Research — Clean Links & Search",
+  "version": "1.0.0",
+  "description": "Clean tracking parameters from links and open explicit UniProt, PubMed and Maps searches from Firefox, DuckDuckGo or Google.",
+  "author": "Nicolas Sénécaut",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@tidy-research.nicolas-senecaut",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": { "required": ["searchTerms"] }
+    }
+  },
+  "permissions": ["activeTab", "scripting", "storage", "contextMenus", "clipboardWrite", "webRequest", "webRequestBlocking"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": { "scripts": ["core.js", "background.js"] },
+  "action": {
+    "default_title": "Tidy Research",
+    "default_popup": "popup.html",
+    "default_icon": { "32": "icons/icon.svg", "64": "icons/icon.svg" }
+  },
+  "icons": { "32": "icons/icon.svg", "64": "icons/icon.svg", "128": "icons/icon.svg" },
+  "omnibox": { "keyword": "u" },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "content_scripts": [{
+    "matches": [
+      "https://duckduckgo.com/*", "https://www.duckduckgo.com/*", "https://html.duckduckgo.com/*", "https://lite.duckduckgo.com/*",
+      "https://www.google.com/search*", "https://www.google.fr/search*", "https://www.google.nl/search*",
+      "https://www.google.de/search*", "https://www.google.co.uk/search*", "https://www.google.be/search*"
+    ],
+    "js": ["core.js", "search-links.js"],
+    "run_at": "document_idle"
+  }],
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none';" }
+}

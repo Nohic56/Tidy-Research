@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tidy Research</title><link rel="stylesheet" href="ui.css"></head>
+<body class="popup">
+  <header><img src="icons/icon.svg" alt=""><div><h1>Tidy Research</h1><p>Clean links. Useful shortcuts.</p></div></header>
+  <div id="accessNotice" class="notice" hidden>Automatic cleanup needs access to websites. Firefox may restrict some pages.<button id="grantAccess" class="link" type="button">Allow access to websites</button></div>
+  <section class="card" aria-labelledby="pageHeading">
+    <div class="eyebrow" id="pageHeading">This page</div>
+    <div id="pageStatus" class="status">Checking this address…</div>
+    <div class="url" id="cleanUrl"></div>
+    <div class="row buttons"><button class="primary" id="copy" type="button" disabled>Copy clean link</button><button id="clean" type="button" disabled>Clean address</button></div>
+    <button class="link restore" id="restore" type="button" hidden>Reopen original address (reloads page)</button>
+    <details id="removedDetails" hidden><summary>Tracking fields removed</summary><p id="removedNames"></p></details>
+    <button class="link" id="pauseSite" type="button" hidden>Pause on this website</button>
+  </section>
+  <section class="card" aria-labelledby="researchHeading">
+    <h2 id="researchHeading">Research a term</h2>
+    <label for="query" class="muted">Protein ID, keywords, or a place</label>
+    <input id="query" type="text" autocomplete="off" spellcheck="false" placeholder="P04637 or cyclin B Xenopus">
+    <div class="provider-links" id="providers"></div>
+    <p class="hint" id="recognition">Choose where to search. Opens in a new tab.</p>
+    <p class="hint">Address bar: <kbd>u</kbd> <kbd>Space</kbd> your query <kbd>Enter</kbd></p>
+  </section>
+  <label class="toggle"><input type="checkbox" id="autoClean">Automatically clean new page loads</label>
+  <label class="toggle"><input type="checkbox" id="searchLinks">Show shortcuts on search results</label>
+  <p id="message" role="status" aria-live="polite"></p>
+  <footer><span>No analytics · Local URL cleanup</span><a id="settingsLink" href="options.html" target="_blank">Settings &amp; privacy</a></footer>
+  <script src="core.js"></script><script src="popup.js"></script>
+</body></html>
